@@ -17,7 +17,6 @@
         margin: 0;
         padding: 0;
         font-family: 'Quicksand', sans-serif;
-        /* Start with a clean, light romantic background */
         background: url('https://i.ibb.co/3fM7Vx6/teddy-bg.jpg') no-repeat center center fixed;
         background-size: cover;
         height: 100vh;
@@ -26,21 +25,21 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        transition: background 1.2s ease-in-out;
+        transition: background 1s ease-in-out;
     }
 
-    /* Professional Glassmorphism Container */
+    /* Modern Glassmorphism Card */
     .container {
-        background: rgba(255, 255, 255, 0.25); /* Frosted glass effect */
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.3); /* Frosted glass effect */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.4);
         padding: 40px;
         border-radius: 40px;
         box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         position: relative;
         z-index: 10;
-        max-width: 420px;
+        max-width: 450px;
         width: 85%;
         animation: slideUp 1s ease-out;
     }
@@ -52,26 +51,40 @@
 
     h1 { 
         font-family: 'Pacifico', cursive;
-        font-size: 3.5rem; 
+        font-size: 3.2rem; 
         color: #fff;
         margin: 0 0 15px 0;
         text-shadow: 2px 3px 6px rgba(0,0,0,0.1);
-        letter-spacing: 2px;
     }
 
     p { color: #fff; font-size: 1.2rem; font-weight: 500; margin: 8px 0; }
 
-    /* Centered, contained photo style for second page (Keepsake look) */
+    /* Centered hugging bears on first slide */
+    .hugging-bears {
+        width: 100%;
+        max-width: 200px;
+        margin: 20px auto;
+        display: block;
+        animation: gentleShake 4s ease-in-out infinite;
+    }
+
+    @keyframes gentleShake {
+        0%, 100% { transform: rotate(-3deg); }
+        50% { transform: rotate(3deg); }
+    }
+
+    /* Keep hands photo contained and centered only on second slide */
     .center-keepsake-img {
         width: 100%;
         max-width: 280px;
         height: auto;
         display: block;
-        margin: 25px auto;
+        margin: 25px auto; /* Centers it perfectly vertically and horizontally */
         border: 12px solid #fff;
         border-bottom: 40px solid #fff; /* Polaroid style */
         border-radius: 5px;
         box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        /* Critical for Sharpness Fix: Tells the browser not to smooth it */
         image-rendering: -webkit-optimize-contrast; 
         object-fit: contain;
     }
@@ -100,8 +113,8 @@
         color: white; 
     }
     .yes:hover { 
-        transform: scale(1.1); 
-        box-shadow: 0 12px 20px rgba(255, 111, 145, 0.3); 
+        transform: scale(1.15); 
+        box-shadow: 0 12px 20px rgba(255, 111, 145, 0.4); 
     }
 
     .no { 
@@ -111,10 +124,10 @@
         transition: all 0.2s ease;
     }
 
-    /* Success Slide Appearance */
+    /* Second Slide Hidden until Yes is clicked */
     .second-slide {
         display: none;
-        animation: fadeIn 1.5s forwards;
+        animation: fadeIn 1.5s;
     }
 
     @keyframes fadeIn {
@@ -122,27 +135,17 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Decorative Romantic Stickers (Floating Elements) */
-    .romantic-sticker {
+    /* Hearts */
+    .heart {
         position: absolute;
         pointer-events: none;
-        font-size: 25px;
-        color: rgba(255, 111, 145, 0.8);
         animation: floatUp 4s linear infinite;
         opacity: 0.8;
-        z-index: 1;
     }
 
     @keyframes floatUp {
         0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
         100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* Small sparkle stickers */
-    .sparkle {
-        font-size: 18px;
-        color: #fff;
-        position: absolute;
     }
 </style>
 </head>
@@ -151,7 +154,10 @@
 <div class="container" id="main-card">
     <div id="slide1">
         <h1>AIMAN ❤️</h1>
-        <p>You make my heart skip a beat... ✨</p>
+        <p>I have a special question for you ✨</p>
+        
+        <img src="https://i.ibb.co/XzC8fFm/teddy-hug.gif" alt="Hugging Bears" class="hugging-bears">
+        
         <p>Will you be mine forever? 💍</p>
         
         <div class="btn-group">
@@ -160,16 +166,17 @@
         </div>
         
         <p style="font-size:14px; opacity:0.8; margin-top: 30px;">— Yours, Zairuu</p>
+    }
     </div>
 
     <div id="slide2" class="second-slide">
-        <h1 style="font-size: 4rem;">Yay!!! ❤️</h1>
+        <h1 style="font-size: 3.5rem;">Yay!!! ❤️</h1>
         <p style="font-size: 1.5rem; margin-top: 20px;">You just made me the happiest person alive, AIMAN! 😍</p>
         
-        <img src="https://i.ibb.co/v6hMDR0W/1774992960985.png" alt="Our Promise" class="center-keepsake-img">
+        <img src="https://i.ibb.co/BpDLXMb/1774992960985.png" alt="Our Moment" class="center-keepsake-img">
         
         <p style="margin-top: 15px;">I promise to cherish you every single day.</p>
-        <div style="margin-top: 40px; font-family: 'Pacifico'; font-size: 2.2rem; color: #fff;">Zairuu ❤️</div>
+        <div style="margin-top: 40px; font-family: 'Pacifico'; font-size: 2rem; color: #fff;">Zairuu ❤️</div>
     </div>
 </div>
 
@@ -195,38 +202,38 @@ function dodgeButton() {
 }
 
 function yesClicked() {
-    // Subtle background change with overlay for readability
-    document.body.style.background = "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://i.ibb.co/v6hMDR0W/1774992960985.png')";
+    // Reveal second slide with a subtle romantinc background transition
+    document.body.style.background = "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://i.ibb.co/3fM7Vx6/teddy-bg.jpg')";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
 
-    const card = document.getElementById('main-card');
+    // Update Card Appearance for second slide
     document.getElementById('slide1').style.display = 'none';
     document.getElementById('slide2').style.display = 'block';
 
-    // Update card to Success appearance
+    // Darken card for text readability against photo
+    const card = document.getElementById('main-card');
     card.style.background = "rgba(0, 0, 0, 0.5)";
 
-    // Launch celebratory burst of stickers
+    // Launch celebratory heart burst
     for(let i=0; i<30; i++) {
-        setTimeout(createSticker, i * 100);
+        setTimeout(createHeart, i * 100);
     }
 }
 
-// Generates decorative, floating stickers/emojis
-function createSticker() {
-    const sticker = document.createElement("div");
-    sticker.classList.add("romantic-sticker");
-    sticker.innerHTML = ["❤️", "✨", "💍", "💕", "🥂"][Math.floor(Math.random() * 5)];
-    sticker.style.left = Math.random() * 100 + "vw";
-    sticker.style.animationDuration = (Math.random() * 2 + 3) + "s";
-    sticker.style.fontSize = (Math.random() * 10 + 20) + "px";
-    document.body.appendChild(sticker);
-    setTimeout(() => sticker.remove(), 5000);
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = ["❤️", "💖", "💝", "💕"][Math.floor(Math.random() * 4)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    heart.style.fontSize = (Math.random() * 10 + 15) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
 }
 
-// Initial subtle stickers immediate ambiance
-setInterval(createSticker, 900);
+// Initial subtle hearts
+setInterval(createHeart, 800);
 </script>
 
 </body>
