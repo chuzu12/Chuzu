@@ -28,8 +28,9 @@
         transition: background 1s ease-in-out;
     }
 
+    /* Modern Glassmorphism Card */
     .container {
-        background: rgba(255, 255, 255, 0.3); 
+        background: rgba(255, 255, 255, 0.3); /* Frosted glass effect */
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.4);
@@ -54,21 +55,36 @@
         color: #fff;
         margin: 0 0 15px 0;
         text-shadow: 2px 3px 6px rgba(0,0,0,0.1);
-        letter-spacing: 2px; /* Added spacing for better look in Caps */
     }
 
     p { color: #fff; font-size: 1.2rem; font-weight: 500; margin: 8px 0; }
 
-    .center-img {
+    /* Hugging Bears on Slide 1 */
+    .hugging-bears {
+        width: 100%;
+        max-width: 200px;
+        margin: 20px auto;
+        display: block;
+        animation: gentleShake 4s ease-in-out infinite;
+    }
+
+    @keyframes gentleShake {
+        0%, 100% { transform: rotate(-3deg); }
+        50% { transform: rotate(3deg); }
+    }
+
+    /* Keep hands photo on Slide 2 contained and centered only */
+    .center-keepsake-img {
         width: 100%;
         max-width: 280px;
         height: auto;
         display: block;
-        margin: 25px auto;
+        margin: 25px auto; /* Centers it perfectly vertically and horizontally */
         border: 12px solid #fff;
-        border-bottom: 40px solid #fff;
+        border-bottom: 40px solid #fff; /* Polaroid style */
         border-radius: 5px;
         box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        /* Critical for Sharpness Fix: Tells the browser not to smooth it */
         image-rendering: -webkit-optimize-contrast; 
         object-fit: contain;
     }
@@ -78,7 +94,6 @@
         display: flex;
         justify-content: center;
         gap: 20px;
-        min-height: 60px;
     }
 
     button {
@@ -90,24 +105,42 @@
         cursor: pointer;
         font-family: 'Quicksand', sans-serif;
         transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     }
 
-    .yes { background: var(--primary-pink); color: white; box-shadow: 0 8px 15px rgba(255, 111, 145, 0.3); }
-    .yes:hover { transform: scale(1.1); }
+    .yes { 
+        background: var(--primary-pink); 
+        color: white; 
+    }
+    .yes:hover { 
+        transform: scale(1.15); 
+        box-shadow: 0 12px 20px rgba(255, 111, 145, 0.4); 
+    }
 
-    .no { background: white; color: var(--primary-pink); position: relative; }
+    .no { 
+        background: white; 
+        color: var(--primary-pink); 
+        position: relative; 
+        transition: all 0.2s ease;
+    }
 
-    .second-slide { display: none; animation: fadeIn 1.5s; }
+    /* Second Slide Hidden until Yes is clicked */
+    .second-slide {
+        display: none;
+        animation: fadeIn 1.5s;
+    }
 
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Hearts */
     .heart {
         position: absolute;
         pointer-events: none;
         animation: floatUp 4s linear infinite;
+        opacity: 0.8;
     }
 
     @keyframes floatUp {
@@ -121,9 +154,9 @@
 <div class="container" id="main-card">
     <div id="slide1">
         <h1>AIMAN ❤️</h1>
-        <p>I have a very important question... ✨</p>
+        <p>I have a special question for you ✨</p>
         
-        <img src="https://i.ibb.co/BpDLXMb/1774992960985.png" alt="Teddy Hug" class="center-img">
+        <img src="https://i.ibb.co/XzC8fFm/teddy-hug.gif" alt="Hugging Bears" class="hugging-bears">
         
         <p>Will you be mine forever? 💍</p>
         
@@ -131,40 +164,61 @@
             <button class="yes" onclick="yesClicked()">Yes 😍</button>
             <button class="no" id="no-btn" onmouseover="dodgeButton()" onclick="dodgeButton()">No 😅</button>
         </div>
+        
         <p style="font-size:14px; opacity:0.8; margin-top: 30px;">— Yours, Zairuu</p>
+    }
     </div>
 
     <div id="slide2" class="second-slide">
-        <h1 style="font-size: 3.5rem;">YAY!!! ❤️</h1>
-        <p style="font-size: 1.4rem; margin-top: 20px;">You've made me the happiest person alive, AIMAN! 😍</p>
+        <h1 style="font-size: 3.5rem;">Yay!!! ❤️</h1>
+        <p style="font-size: 1.5rem; margin-top: 20px;">You just made me the happiest person alive, AIMAN! 😍</p>
         
-        <img src="https://i.ibb.co/BpDLXMb/1774992960985.png" alt="Our Moment" class="center-img">
+        <img src="https://i.ibb.co/BpDLXMb/1774992960985.png" alt="Our Moment" class="center-keepsake-img">
         
-        <p>I promise to cherish you forever.</p>
-        <div style="margin-top: 40px; font-family: 'Pacifico'; font-size: 2.2rem; color: #fff;">Zairuu ❤️</div>
+        <p style="margin-top: 15px;">I promise to cherish you every single day.</p>
+        <div style="margin-top: 40px; font-family: 'Pacifico'; font-size: 2rem; color: #fff;">Zairuu ❤️</div>
     </div>
 </div>
 
 <script>
-const quotes = ["Nice try! 😉", "Wrong way! ❌", "Try again! ✨", "Not today! 🏃‍♀️", "Catch me! 💨"];
+const noQuotes = [
+    "Nice try! 😉", 
+    "Wrong button! ❌", 
+    "Try the other one! 👉",
+    "Think again! 💎", 
+    "Catch me if you can! 💨"
+];
 
 function dodgeButton() {
     const btn = document.getElementById('no-btn');
-    btn.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+    const randomQuote = noQuotes[Math.floor(Math.random() * noQuotes.length)];
+    btn.innerHTML = randomQuote;
     const x = Math.random() * (window.innerWidth - btn.offsetWidth - 50);
     const y = Math.random() * (window.innerHeight - btn.offsetHeight - 50);
     btn.style.position = "fixed";
+    btn.style.transition = "all 0.4s cubic-bezier(0.19, 1, 0.22, 1)"; // Gliding movement
     btn.style.left = x + "px";
     btn.style.top = y + "px";
 }
 
 function yesClicked() {
-    document.body.style.background = "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.ibb.co/3fM7Vx6/teddy-bg.jpg')";
+    // Switch slides and add a background tint
+    document.body.style.background = "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://i.ibb.co/3fM7Vx6/teddy-bg.jpg')";
     document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+
+    // Update Card Appearance for second slide
     document.getElementById('slide1').style.display = 'none';
     document.getElementById('slide2').style.display = 'block';
-    document.getElementById('main-card').style.background = "rgba(0, 0, 0, 0.5)";
-    for(let i=0; i<40; i++) { setTimeout(createHeart, i * 100); }
+
+    // Darken card for text readability against photo
+    const card = document.getElementById('main-card');
+    card.style.background = "rgba(0, 0, 0, 0.5)";
+
+    // Launch a celebratory heart burst
+    for(let i=0; i<30; i++) {
+        setTimeout(createHeart, i * 100);
+    }
 }
 
 function createHeart() {
@@ -173,12 +227,13 @@ function createHeart() {
     heart.innerHTML = ["❤️", "💖", "💝", "💕"][Math.floor(Math.random() * 4)];
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
-    heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+    heart.style.fontSize = (Math.random() * 10 + 15) + "px";
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 5000);
 }
 
-setInterval(createHeart, 1000);
+// Initial subtle hearts
+setInterval(createHeart, 800);
 </script>
 
 </body>
